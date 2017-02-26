@@ -37,7 +37,8 @@ public class SimpleApp {
                 .map(s -> s.split(","));
         long numPurchases = data.count();
         long uniqueUsers = data.map(s -> s[0]).distinct().count();
-        double totalRevenue = data.map(s -> Double.parseDouble(s[2])).reduce((a , b) -> a + b);
+//        double totalRevenue = data.map(s -> Double.parseDouble(s[2])).reduce((a , b) -> a + b);
+        double totalRevenue = data.mapToDouble(s -> Double.parseDouble(s[2])).sum();
 
         List<Tuple2<String, Integer>> pairs = data
                 .mapToPair(
